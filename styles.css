@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-image: url(imgs/imgs/fundos/city01.jpg);
+    background-size: cover;
+}
+
+footer {
+    text-align: center;
+}
