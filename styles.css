@@ -23,6 +23,9 @@ main {
     width: 80%;
     margin: 0 auto;
     padding: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
 #img_logo {
@@ -30,7 +33,11 @@ main {
 }
 
 #slogan {
-    width: 60px;
+    text-align: center;
+}
+
+input:not([type="submit"]) {
+    width: 150px;
 }
 
 .navbar_pesquisa {
