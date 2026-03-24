@@ -1,9 +1,9 @@
-<?php
+<!-- <?php
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         echo "Vai fazer login para a tua terra, pá!";
         var_dump($_POST);
     }
-?>
+?> se colocar um usuário que não existe, vai voltar esse erro echo -->
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -30,9 +30,16 @@
     </header>
 
     <main>
-        <div id="navbar_pesquisa"> pesquisa </div>
+        <div id="navbar_pesquisa">
+            <form action="" name="form_pesquisa" method="GET" enctype="application/x-www-form-urlencoded">
+                <input type="text" name="pesquisa">
+                <input type="submit" value="pesquisar">
+            </form>
+        </div>
+
         conteúdo do meio da tala
-        <div> 4 caixinhas </div>
+
+        <div class="flex_box"> 4 caixinhas </div>
     </main>
 
     <footer>

@@ -16,6 +16,18 @@ main {
     background-color: rgba(255, 176, 73, 0.599);
     margin: auto;
     width: 80%;
+    padding: 5px;
+}
+
+#navbar_pesquisa {
+    background-color: rgba(255, 255, 255, 0.652);
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+}
+
+.flex_box {
+    background-color: rgba(255, 255, 255, 0.652);
 }
 
 .navbar_header {
