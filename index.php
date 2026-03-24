@@ -1,3 +1,10 @@
+<?php
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        echo "Vai fazer login para a tua terra, pá!";
+        var_dump($_POST);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -14,8 +21,8 @@
                 Projeto Camalheia :: viaje pelo mundo ficando alojado na cama... alheia.
             </p>
             <form action="" name="form_login" method="POST" enctype="application/x-www-form-urlencoded">
-                <input type="text" name="Login">
-                <input type="password" name="pass">
+                <input type="text" name="Login" placeholder="user">
+                <input type="password" name="pass" placeholder="password">
                 <input type="submit" value="entrar">
             </form>
         </div>
