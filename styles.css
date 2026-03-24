@@ -1,3 +1,8 @@
+:root{
+    --navbar:rgba(227, 225, 221, 0.6);
+    --mainbars:rgba(255, 255, 255, 0.6);
+}  /* se quisar dar nomes variáveis nas cores, usa o root e depois ao invés da cor, usa-se a variável */
+
 * {
     box-sizing: border-box;
 }
@@ -9,29 +14,30 @@ body {
 }
 
 header {
-    background-color: rgba(255, 255, 255, 0.478);
+    background-color: var(--navbar)
 }
 
 main {
-    background-color: rgba(255, 176, 73, 0.599);
+    background-color: rgba(255, 176, 73, 0.6);
     margin: auto;
     width: 80%;
     padding: 5px;
 }
 
 #navbar_pesquisa {
-    background-color: rgba(255, 255, 255, 0.652);
+    background-color:var(--mainbars);
     width: 100%;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
+    margin: 10px 0;
 }
 
 .flex_box {
-    background-color: rgba(255, 255, 255, 0.652);
+    background-color:var(--mainbars)
 }
 
 .navbar_header {
-    background-color: rgba(227, 225, 221, 0.451);
+    background-color: rgba(227, 225, 221, 0.6);
     width: 80%;
     margin: 0 auto;
     padding: 5px;
@@ -49,18 +55,13 @@ main {
     text-align: center;
 }
 
-input:not([type="submit"]) {
+input:not([type="submit"]):not([name="form_pesquisa"]) {
     width: 150px;
-}
-
-.navbar_pesquisa {
-    width: 100%;
-    margin: auto;
 }
 
 footer {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.438);
+    background-color: var(--navbar);
     padding: 20px;
 }
 
