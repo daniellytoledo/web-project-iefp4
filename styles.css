@@ -8,6 +8,39 @@ body {
     background-size: cover;
 }
 
+header {
+    background-color: rgba(255, 255, 255, 0.478);
+}
+
+main {
+    background-color: rgba(255, 176, 73, 0.599);
+    margin: auto;
+    width: 80%;
+}
+
+.navbar_header {
+    background-color: rgba(227, 225, 221, 0.451);
+    width: 80%;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+#img_logo {
+    width: 80px;
+}
+
+#slogan {
+    width: 60px;
+}
+
+.navbar_pesquisa {
+    width: 100%;
+    margin: auto;
+}
+
 footer {
     text-align: center;
+    background-color: rgba(255, 255, 255, 0.438);
+    padding: 20px;
 }
+
