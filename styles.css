@@ -3,6 +3,22 @@
     --mainbars:rgba(255, 255, 255, 0.6);
 }  /* se quisar dar nomes variáveis nas cores, usa o root e depois ao invés da cor, usa-se a variável */
 
+@font-face{
+    font-family: "californication";
+    src: url("fonts/fonts/the_californication.ttf"), format("truetype");
+    size-adjust: 180%;
+}
+
+@font-face {
+    font-family: "saudagar";
+    src: url(fonts/fonts/saudagar.ttf), format("truetype");
+}
+
+@font-face {
+    font-family: "berose";
+    src: url(fonts/fonts/berose.ttf), format("truetype");
+}
+
 * {
     box-sizing: border-box;
 }
@@ -14,7 +30,7 @@ body {
 }
 
 header {
-    background-color: var(--navbar)
+    background-color: rgba(255, 176, 73, 0.6);
 }
 
 main {
@@ -22,6 +38,21 @@ main {
     margin: auto;
     width: 80%;
     padding: 5px;
+}
+
+#p_01 {
+    font-family: berose;
+}
+
+#autor_p_01 {
+    font-family: saudagar;
+}
+
+#p_titulo_01 {
+    margin-top: 80px;
+    font-family: californication;
+    color: white;
+    font-size: 1.5rem;
 }
 
 #navbar_pesquisa {
@@ -53,15 +84,23 @@ main {
 
 #slogan {
     text-align: center;
+    font-family: californication;
 }
 
 input:not([type="submit"]):not([name="form_pesquisa"]) {
     width: 150px;
 }
 
+.flex_box {
+    width: 150px;
+    height: 120px;
+    border-radius: 10px;
+}
+
 footer {
     text-align: center;
     background-color: var(--navbar);
     padding: 20px;
+    font-family: californication;
 }
 
