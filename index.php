@@ -19,12 +19,20 @@ function pre($x, $die=0){
     }
 }
 
-$SQL = "SELECT * FROM cidades";
-$stmt = $conexao -> prepare($SQL);
-$stmt -> execute();
-$resultado = $stmt -> fetchAll();
-
-/* pre($resultado); só pra mostrar se deu certo */
+if (isset($_GET['cidadeID'])) {
+    $SQL = "SELECT * FROM cidades WHERE id_c=?";
+    $stmt = $conexao -> prepare($SQL);
+    $stmt -> execute([$_GET['cidadeID']]);
+    $resultado = $stmt -> fetch();
+    echo "<h1> Há uma cidade escolhida </h1>";
+} else{
+    $SQL = "SELECT * FROM cidades";
+    $stmt = $conexao -> prepare($SQL);
+    $stmt -> execute();
+    $resultado = $stmt -> fetchAll();
+    /* pre($resultado); só pra mostrar se deu certo */
+    echo "<h1> Mostra todas as cidades </h1>";
+}
 
 ?>
 
@@ -48,7 +56,7 @@ $resultado = $stmt -> fetchAll();
             <form action="" name="form_login" method="POST" enctype="application/x-www-form-urlencoded">
                 <input type="text" name="Login" placeholder="user">
                 <input type="password" name="pass" placeholder="password">
-                <input type="submit" value="entrar" class="button">
+                <input type="submit" value="entrar" class="button_entrar">
             </form>
 
         </div>
@@ -59,7 +67,7 @@ $resultado = $stmt -> fetchAll();
         <div id="navbar_pesquisa">
             <form action="" name="form_pesquisa" method="GET" enctype="application/x-www-form-urlencoded">
                 <input type="text" name="pesquisa">
-                <input type="submit" value="pesquisar" class="button">
+                <input type="submit" value="pesquisar" class="button_pesquisar">
             </form>
         </div>
 
@@ -71,14 +79,18 @@ $resultado = $stmt -> fetchAll();
 
         <p id="p_titulo_01">Cidades aderentes</p>
 
-        <?php foreach($resultado as $cidade): ?>
         <div class="flex_box">
+            <?php foreach($resultado as $cidade): ?>
             <!-- pra cada box de cidade -->
+
+            <a href="index.php?cidade=<?php echo $cidadeID['id_c']?>">
             <div class="city_box">
                 <p class="city_name"> <?php echo $cidade['nome_c'] ?> <p>
-                <p class="city_text"> <?php echo $cidade['habitantes_c'] ?> </p>
+                <p class="city_text"> Nº de Habitantes: <?php echo $cidade['habitantes_c'] ?> </p>
                 <p class="city_text"> <?php echo $cidade['pais_c'] ?> </p>
-            </div>         
+            </a>         
+
+            </div>
             <?php endforeach ?>
             <!-- o banco de dados vai buscar nome da cidade, habitantes e país -->                        
         </div>
