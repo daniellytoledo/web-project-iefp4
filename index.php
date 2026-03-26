@@ -1,9 +1,9 @@
-<!-- <?php
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        echo "Vai fazer login para a tua terra, pá!";
-        var_dump($_POST);
-    }
-?> se colocar um usuário que não existe, vai voltar esse erro echo -->
+<?php
+// index.php
+require_once 'config.php'; // Inclui o arquivo com as senhas
+// Agora você pode usar a conexão $conn
+// Seu código aqui...
+?>
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -37,16 +37,20 @@
             </form>
         </div>
 
-        <p id="p_01">Um homem precisa viajar. Por sua conta, não por meio de histórias, imagens, livros ou TV. Precisa viajar por si, com seus olhos e pés, para entender o que é seu. Para um dia plantar as suas próprias árvores e dar-lhes valor. Conhecer o frio para desfrutar o calor. E o oposto. Sentir a distância e o desabrigo para estar bem sob o próprio teto. Um homem precisa viajar para lugares que não conhece para quebrar essa arrogância que nos faz ver o mundo como o imaginamos, e não simplesmente como é ou pode ser. Que nos faz professores e doutores do que não vimos, quando deveríamos ser alunos, e simplesmente ir ver.</p>
-
+        <div id="paragrafo"><p id="p_01">Um homem precisa viajar. Por sua conta, não por meio de histórias, imagens, livros ou TV. Precisa viajar por si, com seus olhos e pés, para entender o que é seu. Para um dia plantar as suas próprias árvores e dar-lhes valor. Conhecer o frio para desfrutar o calor. E o oposto. Sentir a distância e o desabrigo para estar bem sob o próprio teto. Um homem precisa viajar para lugares que não conhece para quebrar essa arrogância que nos faz ver o mundo como o imaginamos, e não simplesmente como é ou pode ser. Que nos faz professores e doutores do que não vimos, quando deveríamos ser alunos, e simplesmente ir ver.</p>
+    
         <p id="autor_p_01">Amyr Klink</p>
+
+        </div>
 
         <p id="p_titulo_01">Cidades aderentes</p>
 
         <div class="flex_box">
             <div class="city_box">
-                Faro
-            </div>
+                <p class="city_name">Faro<p>
+                <p class="city_text">Habitantes</p>
+                <p class="city_text">x-nation</p>
+            </div>                                 
         </div>
     </main>
 

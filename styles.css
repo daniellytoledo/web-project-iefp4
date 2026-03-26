@@ -27,10 +27,24 @@ body {
     margin: 0;
     background-image: url(imgs/imgs/fundos/city01.jpg);
     background-size: cover;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
-    background-color: rgba(255, 176, 73, 0.6);
+    background-color: var(--navbar);
+}
+
+.navbar_header {
+    width: 80%;
+    margin: 0 auto;
+    padding: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 main {
@@ -38,20 +52,24 @@ main {
     margin: auto;
     width: 80%;
     padding: 5px;
+    flex-grow: 1;
+}
+
+#paragrafo {
+    /* background-color: var(--navbar); */
+    text-align: center;
+    justify-content: center;
+    padding: 50px;
+    margin-top: 5%;
 }
 
 #p_01 {
     font-family: berose;
+    font-size: 2rem;
 }
 
 #autor_p_01 {
     font-family: saudagar;
-}
-
-#p_titulo_01 {
-    margin-top: 80px;
-    font-family: californication;
-    color: white;
     font-size: 1.5rem;
 }
 
@@ -67,17 +85,6 @@ main {
     background-color:var(--mainbars)
 }
 
-.navbar_header {
-    background-color: rgba(227, 225, 221, 0.6);
-    width: 80%;
-    margin: 0 auto;
-    padding: 5px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
 #img_logo {
     width: 80px;
 }
@@ -91,10 +98,29 @@ input:not([type="submit"]):not([name="form_pesquisa"]) {
     width: 150px;
 }
 
+#p_titulo_01 {
+    margin-top: 80px;
+    font-family: californication;
+    color: white;
+    font-size: 1.5rem;
+}
+
 .flex_box {
     width: 150px;
-    height: 120px;
     border-radius: 10px;
+    background-color: var(--navbar);
+}
+
+.city_name {
+    text-align: center;
+    font-family: californication;
+    font-size: 1.2rem;
+    margin: 5px;
+}
+
+.city_text {
+    margin: 0;
+    line-height: 20px;
 }
 
 footer {
