@@ -3,6 +3,29 @@
 require_once 'config.php'; // Inclui o arquivo com as senhas
 // Agora você pode usar a conexão $conn
 // Seu código aqui...
+
+/** exibe dados recebidos 
+ * @param mixed $x - dados para análise
+ * @param bool $x - 0 continua a execução de código, 1: morre aqui
+ */
+
+function pre($x, $die=0){
+    echo "<pre>";
+    var_dump($x);
+    echo "</pre>";
+    echo "<hr>";
+    if ($die){
+        die();
+    }
+}
+
+$SQL = "SELECT * FROM cidades";
+$stmt = $conn -> prepare($SQL);
+$stmt -> execute();
+$resultado = $stmt -> fetchAll();
+
+pre($resultado);
+
 ?>
 
 <!DOCTYPE html>
