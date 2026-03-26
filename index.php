@@ -20,11 +20,11 @@ function pre($x, $die=0){
 }
 
 $SQL = "SELECT * FROM cidades";
-$stmt = $conn -> prepare($SQL);
+$stmt = $conexao -> prepare($SQL);
 $stmt -> execute();
 $resultado = $stmt -> fetchAll();
 
-pre($resultado);
+/* pre($resultado); só pra mostrar se deu certo */
 
 ?>
 
@@ -40,14 +40,17 @@ pre($resultado);
     <header>
         <div class="navbar_header">
             <img src="imgs/imgs/logo.png" alt="logo" id="img_logo">
+
             <p id="slogan">
                 Projeto Camalheia :: viaje pelo mundo ficando alojado na cama... alheia.
             </p>
+
             <form action="" name="form_login" method="POST" enctype="application/x-www-form-urlencoded">
                 <input type="text" name="Login" placeholder="user">
                 <input type="password" name="pass" placeholder="password">
-                <input type="submit" value="entrar">
+                <input type="submit" value="entrar" class="button">
             </form>
+
         </div>
 
     </header>
@@ -56,7 +59,7 @@ pre($resultado);
         <div id="navbar_pesquisa">
             <form action="" name="form_pesquisa" method="GET" enctype="application/x-www-form-urlencoded">
                 <input type="text" name="pesquisa">
-                <input type="submit" value="pesquisar">
+                <input type="submit" value="pesquisar" class="button">
             </form>
         </div>
 
@@ -68,12 +71,16 @@ pre($resultado);
 
         <p id="p_titulo_01">Cidades aderentes</p>
 
+        <?php foreach($resultado as $cidade): ?>
         <div class="flex_box">
+            <!-- pra cada box de cidade -->
             <div class="city_box">
-                <p class="city_name">Faro<p>
-                <p class="city_text">Habitantes</p>
-                <p class="city_text">x-nation</p>
-            </div>                                 
+                <p class="city_name"> <?php echo $cidade['nome_c'] ?> <p>
+                <p class="city_text"> <?php echo $cidade['habitantes_c'] ?> </p>
+                <p class="city_text"> <?php echo $cidade['pais_c'] ?> </p>
+            </div>         
+            <?php endforeach ?>
+            <!-- o banco de dados vai buscar nome da cidade, habitantes e país -->                        
         </div>
     </main>
 

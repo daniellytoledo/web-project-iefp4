@@ -34,7 +34,7 @@ body {
 }
 
 header {
-    background-color: var(--navbar);
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .navbar_header {
@@ -74,15 +74,12 @@ main {
 }
 
 #navbar_pesquisa {
-    background-color:var(--mainbars);
+    background-color: rgba(255, 255, 255, 0.237);
     width: 100%;
     text-align: center;
     padding: 10px;
     margin: 10px 0;
-}
-
-.flex_box {
-    background-color:var(--mainbars)
+    border-radius: 10px;
 }
 
 #img_logo {
@@ -96,6 +93,18 @@ main {
 
 input:not([type="submit"]):not([name="form_pesquisa"]) {
     width: 150px;
+    border-radius: 8px;
+    padding: 5px 6px;
+}
+
+.button {
+    width: 80px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: rgba(255, 90, 35, 0.545);
 }
 
 #p_titulo_01 {
@@ -108,7 +117,8 @@ input:not([type="submit"]):not([name="form_pesquisa"]) {
 .flex_box {
     width: 150px;
     border-radius: 10px;
-    background-color: var(--navbar);
+    background-color: rgba(255, 255, 255, 1);
+    padding: 8px;
 }
 
 .city_name {
@@ -125,7 +135,7 @@ input:not([type="submit"]):not([name="form_pesquisa"]) {
 
 footer {
     text-align: center;
-    background-color: var(--navbar);
+    background-color: rgba(255, 255, 255, 1);
     padding: 20px;
     font-family: californication;
 }
