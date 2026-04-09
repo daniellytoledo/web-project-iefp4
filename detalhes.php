@@ -2,27 +2,29 @@
 require_once 'config.php'; // Inclui o arquivo com as senhas
 require_once 'includes/funcoes.php'; // funções
 
-$SQL = "SELECT * FROM cidades WHERE id_c=?";
-$stmt = $conexao -> prepare($SQL);
-$stmt -> execute([$_GET['cidade']]);
+$SQL       = "SELECT * FROM cidades WHERE id_c=?";
+$stmt      = $conexao -> prepare($SQL);
+$stmt     -> execute([$_GET['cidade']]);
 $resultado = $stmt -> fetch();
 
 $cidade    = $resultado['nome_c'];
 $nhabit    = $resultado['habitantes_c'];
 $pais      = $resultado['pais_c'];
-$fundacao  = $resultado['dataf_c'];
+$fundacao  = $resultado['dataf_c'] >= 0 ? $resultado['dataf_c'] : abs($resultado['dataf_c']). " A.C.";
 $descricao = $resultado['desc_c'];
+
+$SQL       = "SELECT img_f FROM fotos WHERE cidade_f = ?";
+$stmt      = $conexao->prepare($SQL);
+$stmt     -> execute([$_GET['cidade']]);
+$fotos     = $stmt->fetchAll();
+
 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camalheia</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
+<?php require_once 'includes/head.php' ?>
+
 <body>
     <header>
         <div class="navbar_header">
@@ -43,23 +45,21 @@ $descricao = $resultado['desc_c'];
     </header>
 
     <main>
-        <div id="navbar_pesquisa">
-            <form action="" name="form_pesquisa" method="GET" enctype="application/x-www-form-urlencoded">
-                <input type="text" name="pesquisa">
-                <input type="submit" value="pesquisar" class="button_pesquisar">
-            </form>
-        </div>
+        <?php require_once 'includes/pesquisa_home.php' ?>
 
         <p id="p_titulo_01"> <?= $cidade ?> </p>
+        <br><br><br>
 
-        <div class="flex_box">    
-                     
+        <div>    
+            <p> <strong>País:</strong> <?= $pais ?>
+            <p> <strong>Habitantes:</strong> <?= $nhabit ?> 
+            <p> <strong>Fundação:</strong> <?= $fundacao ?> 
+            <p> <?= $descricao ?> </p>
         </div>
+
     </main>
 
-    <footer>
-        O projeto Camalheia é exclusivamente patrocinado por Durex Lda, Harmony SA e Control Lda.
-    </footer>
+    <?php require_once 'includes/footer.php' ?>
 
 </body>
 </html>

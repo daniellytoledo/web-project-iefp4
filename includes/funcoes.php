@@ -14,3 +14,5 @@ function pre($x, $die=0){
         die();
     }
 }
+
+?>

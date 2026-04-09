@@ -11,12 +11,8 @@ $resultado = $stmt -> fetchAll();
 
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camalheia</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
+<?php require_once 'includes/head.php' ?>
+
 <body>
     <header>
         <div class="navbar_header">
@@ -37,12 +33,8 @@ $resultado = $stmt -> fetchAll();
     </header>
 
     <main>
-        <div id="navbar_pesquisa">
-            <form action="" name="form_pesquisa" method="GET" enctype="application/x-www-form-urlencoded">
-                <input type="text" name="pesquisa">
-                <input type="submit" value="pesquisar" class="button_pesquisar">
-            </form>
-        </div>
+
+        <?php require_once 'includes/pesquisa_home.php' ?>
 
         <div id="paragrafo"><p id="p_01">Um homem precisa viajar. Por sua conta, não por meio de histórias, imagens, livros ou TV. Precisa viajar por si, com seus olhos e pés, para entender o que é seu. Para um dia plantar as suas próprias árvores e dar-lhes valor. Conhecer o frio para desfrutar o calor. E o oposto. Sentir a distância e o desabrigo para estar bem sob o próprio teto. Um homem precisa viajar para lugares que não conhece para quebrar essa arrogância que nos faz ver o mundo como o imaginamos, e não simplesmente como é ou pode ser. Que nos faz professores e doutores do que não vimos, quando deveríamos ser alunos, e simplesmente ir ver.</p>
     
@@ -69,9 +61,7 @@ $resultado = $stmt -> fetchAll();
         </div>
     </main>
 
-    <footer>
-        O projeto Camalheia é exclusivamente patrocinado por Durex Lda, Harmony SA e Control Lda.
-    </footer>
+    <?php require_once 'includes/footer.php' ?>
 
 </body>
 </html>
