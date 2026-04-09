@@ -1,38 +1,11 @@
 <?php
-// index.php
 require_once 'config.php'; // Inclui o arquivo com as senhas
-// Agora você pode usar a conexão $conn
-// Seu código aqui...
+require_once 'includes/funcoes.php'; // funções
 
-/** exibe dados recebidos 
- * @param mixed $x - dados para análise
- * @param bool $x - 0 continua a execução de código, 1: morre aqui
- */
-
-function pre($x, $die=0){
-    echo "<pre>";
-    var_dump($x);
-    echo "</pre>";
-    echo "<hr>";
-    if ($die){
-        die();
-    }
-}
-
-if (isset($_GET['cidadeID'])) {
-    $SQL = "SELECT * FROM cidades WHERE id_c=?";
-    $stmt = $conexao -> prepare($SQL);
-    $stmt -> execute([$_GET['cidadeID']]);
-    $resultado = $stmt -> fetch();
-    echo "<h1> Há uma cidade escolhida </h1>";
-} else{
-    $SQL = "SELECT * FROM cidades";
-    $stmt = $conexao -> prepare($SQL);
-    $stmt -> execute();
-    $resultado = $stmt -> fetchAll();
-    /* pre($resultado); só pra mostrar se deu certo */
-    echo "<h1> Mostra todas as cidades </h1>";
-}
+$SQL = "SELECT * FROM cidades";
+$stmt = $conexao -> prepare($SQL);
+$stmt -> execute();
+$resultado = $stmt -> fetchAll();
 
 ?>
 
@@ -42,7 +15,7 @@ if (isset($_GET['cidadeID'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camalheia</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
@@ -83,7 +56,7 @@ if (isset($_GET['cidadeID'])) {
             <?php foreach($resultado as $cidade): ?>
             <!-- pra cada box de cidade -->
 
-            <a href="index.php?cidade=<?php echo $cidadeID['id_c']?>">
+            <a href="detalhes.php?cidade=<?php echo $cidade['id_c']?>">
             <div class="city_box">
                 <p class="city_name"> <?php echo $cidade['nome_c'] ?> <p>
                 <p class="city_text"> Nº de Habitantes: <?php echo $cidade['habitantes_c'] ?> </p>

@@ -27,7 +27,6 @@ body {
     margin: 0;
     background-image: url(imgs/imgs/fundos/city01.jpg);
     background-size: cover;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
