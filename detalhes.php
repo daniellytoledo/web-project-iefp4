@@ -50,11 +50,15 @@ $fotos     = $stmt->fetchAll();
         <p id="p_titulo_01"> <?= $cidade ?> </p>
         <br><br><br>
 
-        <div>    
+        <div id="desc_cidade">    
             <p> <strong>País:</strong> <?= $pais ?>
             <p> <strong>Habitantes:</strong> <?= $nhabit ?> 
             <p> <strong>Fundação:</strong> <?= $fundacao ?> 
-            <p> <?= $descricao ?> </p>
+                <p> <?= $descricao ?> </p>
+                <br><br>
+                <?php foreach($fotos as $foto): ?>
+                <img src="imgs/imgs/cidades/<?= $foto['img_f'] ?>" class="miniatura">
+                <?php endforeach ?>
         </div>
 
     </main>
