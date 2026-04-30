@@ -2,6 +2,8 @@
 require_once 'config.php'; // Inclui o arquivo com as senhas
 require_once 'includes/funcoes.php'; // funções
 
+// se eu quiser apenas puxar um arquivo com a senha do banco de dados, eu posso criar uma pasta fora do projeto e dentro do servidor com o acesso aos bancos de dados em vários arquivos, e aqui no index apenas puxar esse arquivo com a senha de acesso, sem precisar colocar a senha aqui no código... fazer um require_once e colocar o caminho do arquivo que neste caso seria "../../credenciais_db/cidades_acesso.php além de adicionar um require_once também com a conexão_db
+
 $SQL = "SELECT * FROM cidades";
 $stmt = $conexao -> prepare($SQL);
 $stmt -> execute();
