@@ -2,7 +2,6 @@
 require_once 'config.php'; // Inclui o arquivo com as senhas
 require_once 'includes/funcoes.php'; // funções
 
-
 ?>
 
 <!DOCTYPE html>
@@ -36,11 +35,11 @@ require_once 'includes/funcoes.php'; // funções
 
         <div>
             <form method="POST" action="">
-                <input type="text" name="fnome" placeholder="Nome da Cidade">
-                <input type="text" name="fpais" placeholder="Nome do País">
-                <input type="number" name="fdata" placeholder="Data de Fundação">
-                <input type="number" name="fhabitantes" placeholder="Número de Habitantes">
-                <textarea name="fdescricao" placeholder="Decrição" id=""></textarea>
+                <input type="text" name="fnome" placeholder="Nome da Cidade" class="class-input"><br><br>
+                <input type="text" name="fpais" placeholder="Nome do País" class="class-input"><br><br>
+                <input type="number" name="fdata" placeholder="Data de Fundação" class="class-input"><br><br>
+                <input type="number" name="fhabitantes" placeholder="Número de Habitantes" class="class-input"><br><br>
+                <textarea name="fdescricao" placeholder="Decrição" class="class-input"></textarea>
             </form>
             <br><br>
 

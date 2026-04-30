@@ -206,6 +206,15 @@ nav {
     border-radius: 5px;
 }
 
+.class-input {
+    width: 300px;
+}
+
+textarea.class-input {
+    min-height: 180px;
+    min-width: 500px;
+}
+
 footer {
     text-align: center;
     background-color: rgba(255, 255, 255, 1);
