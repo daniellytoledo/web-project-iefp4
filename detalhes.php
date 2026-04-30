@@ -56,9 +56,11 @@ $fotos     = $stmt->fetchAll();
             <p> <strong>Fundação:</strong> <?= $fundacao ?> 
                 <p> <?= $descricao ?> </p>
                 <br><br>
-                <?php foreach($fotos as $foto): ?>
-                <img src="imgs/imgs/cidades/<?= $foto['img_f'] ?>" class="miniatura">
-                <?php endforeach ?>
+                <div class="flex_box">
+                    <?php foreach($fotos as $foto): ?>
+                    <img src="imgs/imgs/cidades/<?= $foto['img_f'] ?>" class="miniatura">
+                    <?php endforeach ?>
+                </div>
         </div>
 
     </main>

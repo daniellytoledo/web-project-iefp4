@@ -154,6 +154,7 @@ nav {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
+    align-content: space-between;
 }
 
 .city_box {
@@ -196,6 +197,13 @@ nav {
     padding: 10px;
     margin-right: 10px;
     align-content: space-between;
+}
+
+.miniatura {
+    width: 23%;
+    margin: 1.5%;
+    border: 2px solid rgba(92, 212, 182, 0.799);
+    border-radius: 5px;
 }
 
 footer {
