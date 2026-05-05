@@ -2,6 +2,11 @@
 require_once 'config.php'; // Inclui o arquivo com as senhas
 require_once 'includes/funcoes.php'; // funções
 
+if(isset($_POST['fnome'])) {
+    $sql="INSERT INTO cidades ('nome_c', 'pais_c', 'habitantes_c', 'dataf_c', 'descricao_c')
+        VALUES (?, ?, ?, ?, ?)";
+} // inserindo dados no banco de dados real do SQL
+
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +44,9 @@ require_once 'includes/funcoes.php'; // funções
                 <input type="text" name="fpais" placeholder="Nome do País" class="class-input"><br><br>
                 <input type="number" name="fdata" placeholder="Data de Fundação" class="class-input"><br><br>
                 <input type="number" name="fhabitantes" placeholder="Número de Habitantes" class="class-input"><br><br>
-                <textarea name="fdescricao" placeholder="Decrição" class="class-input"></textarea>
+                <textarea name="fdescricao" placeholder="Decrição" class="class-input"></textarea><br><br>
+                <input type="submit" value="Adicionar">
+                <input type="reset" value="Apagar">
             </form>
             <br><br>
 
