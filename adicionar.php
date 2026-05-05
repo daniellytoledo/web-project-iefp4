@@ -1,11 +1,25 @@
 <?php
-require_once 'config.php'; // Inclui o arquivo com as senhas
+require_once 'config.php'; // Inclui o arquivo com as senhas, neste caso estou usando o config porque coloquei no gitignore, mas pela aula, estariamos usando o require_once com o file conexao_db.php
 require_once 'includes/funcoes.php'; // funções
 
+// isset() função nativa do PHP que devolve True/False consoante a variável avaliada ($var) existe ou não
+
 if(isset($_POST['fnome'])) {
-    $sql="INSERT INTO cidades ('nome_c', 'pais_c', 'habitantes_c', 'dataf_c', 'descricao_c')
-        VALUES (?, ?, ?, ?, ?)";
-} // inserindo dados no banco de dados real do SQL
+    $sql= "INSERT INTO cidades (nome_c, pais_c, habitantes_c, dataf_c, desc_c) VALUES (?, ?, ?, ?, ?)";
+
+    $addArray = [
+        $_POST['fnome'],
+        $_POST['fpais'],
+        $_POST['fhabitantes'],
+        $_POST['fdata'],
+        $_POST['fdescricao']
+    ];
+
+    $stmt = $conexao->prepare($sql);
+    $stmt-> execute($addArray);
+
+    echo "Cidade adicionada.";
+} // inserindo dados no banco de dados real do SQL caso o isset devolve como True, dizendo que existe um formulário enviado pelo adicionar da página
 
 ?>
 
