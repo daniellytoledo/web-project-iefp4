@@ -126,8 +126,9 @@ input:not([type="submit"]):not([type="reset"]):not([name="form_pesquisa"]) {
 }
 
 .button_entrar:hover {
-    background-color: #33B8A0;
+    background-color: #2C9181;
     cursor: pointer;
+    color: white;
 }
 
 .button_pesquisar {
@@ -141,8 +142,9 @@ input:not([type="submit"]):not([type="reset"]):not([name="form_pesquisa"]) {
 }
 
 .button_pesquisar:hover {
-    background-color: #33B8A0;
+    background-color: #2C9181;
     cursor: pointer;
+    color: white;
 }
 
 nav {
@@ -225,6 +227,23 @@ nav a {
 
 .class-input {
     width: 300px;
+}
+
+.lista-link {
+    display: block;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    background-color: white;
+    font-size: 1rem;
+    font-family: sans-serif;
+    transition: font-size 0.3s ease;
+    border-radius: 10px;
+}
+
+.lista-link:hover {
+    background-color: #2C9181;
+    font-size: 1.2rem;
+    color: white;
 }
 
 textarea.class-input {
