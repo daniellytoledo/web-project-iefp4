@@ -12,12 +12,17 @@ if(!isset($_GET['cidade_id'])) {
     $resposta  = $stmt->fetchAll();   // pega as informaçõs da cidade e transforma em array
 }
 
-// 2º momento: info da cidade escolhida
-if(!isset($_GET['cidade_id'])) {
+// 2º momento: info da cidade escolhida. o stmt para preparar a conexão ajuda a evitar injection (alguém tentando invadir o bando de dados), ou seja, melhora a segurança do sistema
+if(isset($_GET['cidade_id'])) {
     $sql          = "SELECT * FROM cidades WHERE id_c =?";
     $stmt         = $conexao->prepare($sql);
     $stmt->execute([$_GET['cidade_id']]);
-    $dados_cidade = $stmt->fetchAll();
+    $dados_cidade = $stmt->fetch();
+    $nome         = $dados_cidade['nome_c'];
+    $habitantes   = $dados_cidade['habitantes_c'];
+    $pais         = $dados_cidade['pais_c'];
+    $dataf        = $dados_cidade['dataf_c'];
+    $descricao    = $dados_cidade['desc_c'];
 }
 
 // 3º momento: se o formulário foi recebido, então podemos editá-lo.
@@ -67,7 +72,7 @@ if (isset($_POST['fnome'])) {
     <main>
         <?php require_once 'includes/pesquisa_home.php' ?>
 
-        <p id="p_titulo_01" style="background-color: #2C9181; border-radius: 10px; padding: 10px; width: 15%;"> editar cidade </p>
+        <p id="p_titulo_01" style="background-color: #2C9181; border-radius: 10px; padding: 5px; width: 25%;"> atualizar cidade </p>
         <br><br><br>
 
         <div>
@@ -81,11 +86,11 @@ if (isset($_POST['fnome'])) {
             <!-- 2º passo -->
             <?php if (isset($_GET['cidade_id'])): ?>
                 <form method="POST" action="">
-                    <input type="text" name="fnome" placeholder="Nome da Cidade" class="class-input"><br><br>
-                    <input type="text" name="fpais" placeholder="Nome do País" class="class-input"><br><br>
-                    <input type="number" name="fdata" placeholder="Data de Fundação" class="class-input"><br><br>
-                    <input type="number" name="fhabitantes" placeholder="Número de Habitantes" class="class-input"><br><br>
-                    <textarea name="fdescricao" placeholder="Decrição" class="class-input"></textarea><br><br>
+                    <input type="text" name="fnome" placeholder="Nome da Cidade" class="class-input" value="<?= $nome?>" required><br><br>
+                    <input type="text" name="fpais" placeholder="Nome do País" class="class-input" value="<?= $pais ?>" required><br><br>
+                    <input type="number" name="fdata" placeholder="Data de Fundação" class="class-input" value="<?= $dataf ?>" required><br><br>
+                    <input type="number" name="fhabitantes" placeholder="Número de Habitantes" class="class-input" value="<?= $habitantes ?>" required><br><br>
+                    <textarea name="fdescricao" placeholder="Decrição" class="class-input" required><?= $descricao ?></textarea><br><br>
                     <input type="submit" value="Adicionar">
                     <input type="reset" value="Apagar">
                 </form>
