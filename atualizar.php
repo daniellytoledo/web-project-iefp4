@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once 'config.php'; // Inclui o arquivo com as senhas, neste caso estou usando o config porque coloquei no gitignore, mas pela aula, estariamos usando o require_once com o file conexao_db.php
 require_once 'includes/funcoes.php'; // funções
 
@@ -106,6 +108,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['fnome'])) {
     </main>
 
     <?php require_once 'includes/footer.php' ?>
+    <?php require_once "includes/janela_aviso.php" ?>  
 
 </body>
 

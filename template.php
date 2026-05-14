@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once 'config.php'; // Inclui o arquivo com as senhas
 require_once 'includes/funcoes.php'; // funções
 

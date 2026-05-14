@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once 'config.php'; // Inclui o arquivo com as senhas
 require_once 'includes/funcoes.php'; // funções
 
@@ -50,6 +52,7 @@ $fotos     = $stmt->fetchAll();
     </main>
 
     <?php require_once 'includes/footer.php' ?>
+    <?php require_once "includes/janela_aviso.php" ?> 
 
 </body>
 </html>

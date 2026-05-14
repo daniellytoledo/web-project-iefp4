@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once 'config.php'; // Inclui o arquivo com as senhas
 require_once 'includes/funcoes.php'; // funções
 
@@ -8,6 +10,11 @@ $SQL = "SELECT * FROM cidades";
 $stmt = $conexao -> prepare($SQL);
 $stmt -> execute();
 $resultado = $stmt -> fetchAll();
+
+if(isset($_SESSION['alerta'])) {
+    $alerta = $_SESSION['alerta'];
+    unset($_SESSION['alerta']);
+}
 
 ?>
 
@@ -48,6 +55,7 @@ $resultado = $stmt -> fetchAll();
     </main>
 
     <?php require_once 'includes/footer.php' ?>
+    <?php require_once 'includes/janela_aviso.php' ?>
 
 </body>
 </html>

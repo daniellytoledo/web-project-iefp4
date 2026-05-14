@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once 'config.php'; // Inclui o arquivo com as senhas, neste caso estou usando o config porque coloquei no gitignore, mas pela aula, estariamos usando o require_once com o file conexao_db.php
 require_once 'includes/funcoes.php'; // funções
 
@@ -7,19 +9,23 @@ require_once 'includes/funcoes.php'; // funções
 // 1º momento: listagem das cidades com id no <a href, selecionando cidades
 $resposta = "";
 
-if(!isset($_GET['cidade_id'])) {
+if (!isset($_GET['cidade_id'])) {
     $sql       = "SELECT * FROM cidades"; // apenas lê as informações do banco de dados
     $stmt      = $conexao->query($sql); // envio da query pra base de dados
     $resposta  = $stmt->fetchAll();   // pega as informaçõs da cidade e transforma em array
 }
 
 // 2º momento: info da cidade escolhida. o stmt para preparar a conexão ajuda a evitar injection (alguém tentando invadir o bando de dados), ou seja, melhora a segurança do sistema
-if(isset($_GET['cidade_id']) && $_SERVER["REQUEST_METHOD"]=="GET") {
-    $sql  = "DELETE FROM cidades WHERE id_c=?";
-    $stmt = $conexao->prepare($sql);
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['cidade_id'])) {
+    $sql    = "DELETE FROM cidades WHERE id_c=?";
+    $stmt   = $conexao->prepare($sql);
     /* $array = [$_GET['cidade_id']];
-    $stmt->execute($array) isso é o mesmo que o único comando abaixo: */
-    $stmt->execute($_GET['cidade_id']); 
+    $stmt->execute($array); */
+    $stmt->execute([$_GET['cidade_id']]);
+
+    $feedback = "Cidade eliminada com sucesso";
+    $_SESSION['alerta'] = $feedback;
+    header('location:eliminar.php');
 }
 
 ?>
@@ -53,19 +59,20 @@ if(isset($_GET['cidade_id']) && $_SERVER["REQUEST_METHOD"]=="GET") {
         <p id="p_titulo_01" style="background-color: #2C9181; border-radius: 10px; padding: 5px; width: 25%;"> eliminar cidade </p>
         <br><br><br>
 
+        <!-- 1º passo -->
         <div>
-            <!-- 1º passo listagem-->
             <?php if (!isset($_GET['cidade_id'])): ?>
                 <?php foreach ($resposta as $cidade): ?>
-                    <a href="eliminar.php?cidade_id=<?= $cidade['id_c'] ?>" class="lista-link"> <?= $cidade['nome_c'] ?> </a> <!-- aqui coloca a variável cidade e escolhe qual informação de cidade quero -->
+                    <a href="#" onclick="confirmaEliminar('<?= $cidade['nome_c'] ?>',<?= $cidade['id_c'] ?>)" class="lista-link"> <?= $cidade['nome_c'] ?> </a>
                 <?php endforeach; ?>
-            <?php endif; ?>
-
+            <?php endif; ?> <!-- aqui coloca a variável cidade e escolhe qual informação de cidade quero -->
+            <br><br><br><br>
         </div>
 
     </main>
 
     <?php require_once 'includes/footer.php' ?>
+    <?php require_once 'includes/janela_aviso.php' ?>
 
 </body>
 
