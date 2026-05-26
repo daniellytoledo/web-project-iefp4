@@ -7,7 +7,7 @@
 
 function pre($x, $die=0){
     echo "<pre>";
-    var_dump($x);
+    print_r($x);
     echo "</pre>";
     echo "<hr>";
     if ($die){

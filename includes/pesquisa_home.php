@@ -4,6 +4,7 @@
         <a href="adicionar.php" class="button_pesquisar">Adicionar</a>
         <a href="atualizar.php" class="button_pesquisar">Atualizar</a>
         <a href="eliminar.php" class="button_pesquisar">Eliminar</a>
+        <a href="fotos.php">Fotos</a>
     </nav>
 
     <form action="" name="form_pesquisa" method="GET" enctype="application/x-www-form-urlencoded">
