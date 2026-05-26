@@ -7,24 +7,23 @@ require_once 'includes/funcoes.php'; // funções
 // verifica se o formulário foi submetido
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    
-
     $cidade   = $_POST['fcidade'];
     $desc     = $_POST['fdesc'];
 
     // criar array com o nome do ficheiro, separado por ponto (ex.: se chamar batatas.jpg, separa "batatas de "jpg")
-    $nomecompleto = explode(".", $_FILES["ffotos"] ["name"]);
+    $nomecompleto = explode(".", $_FILES["ffoto"] ["name"]);
 
     // dar um nome garantidamente diferente (timestamp UNIX atual) e trazer o último elemento do array (que é a extensão)
     // gerará um nome como 312321.jpg
     $novonome = round(microtime(true)) . "." . end($nomecompleto);
     move_uploaded_file($_FILES["ffoto"] ["tmp_name"], "imgs/cidades/" . $novonome);
 
-    $sql_adFoto = "INSERT INTO fotos (img_f, desc_f, cidade_f) VALUES (:nome, :desc, :cidade)";
+    $sql_adFoto = "INSERT INTO fotos (img_f, desc_f, cidade_f) VALUES (?, ?, ?)";
+    // VALUES ('$novonome, $desc, $cidade)";
     $adFoto = [
-        "nome"    => $novonome,
-        "desc"    => $desc,
-        "cidade"  => $cidade
+        $novonome,
+        $desc,
+        $cidade
     ];
 
     $stmt  = $conexao->prepare($sql_adFoto);
@@ -32,10 +31,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if($stmt==TRUE) {
         // depois de inserido a foto navega para a página inicial
-        header("Location:index.php?alerta=4");
+        $_SESSION['alerta'] = 'Imagem inserida com sucesso!';
     } else {
-        header("Location:index.php?alerta=0");
+        $_SESSION['alerta'] = 'Erro ao inserir imagem!';
     }
+    header("Location:index.php");
 } else {
     $sql   = "SELECT * FROM cidades";
     // como não precisa de ser uma instrução prepara basta query() direto
