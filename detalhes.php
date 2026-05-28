@@ -20,7 +20,6 @@ $stmt      = $conexao->prepare($SQL);
 $stmt     -> execute([$_GET['cidade']]);
 $fotos     = $stmt->fetchAll();
 
-
 ?>
 
 <!DOCTYPE html>

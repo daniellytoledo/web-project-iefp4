@@ -10,3 +10,7 @@ function confirmaEliminar(cidade,id){
 function removerJanelaAviso(){ 
     document.getElementById("janelaAvisos_id").style.display = "none";
 }
+
+function removerJanelaAlerta(){ 
+    document.getElementById("janelaAlertas_id").style.display = "none";
+}

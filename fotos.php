@@ -5,18 +5,25 @@ require_once 'config.php'; // Inclui o arquivo com as senhas
 require_once 'includes/funcoes.php'; // funções
 
 // verifica se o formulário foi submetido
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if($_FILES['ffoto']['error'] != 0){
+        $_SESSION['alerta'] = "Erro no upload da imagem: erro ".$_FILES['ffoto']['error'];
+        header("location:index.php");
+    }
+    
     $cidade   = $_POST['fcidade'];
     $desc     = $_POST['fdesc'];
 
-    // criar array com o nome do ficheiro, separado por ponto (ex.: se chamar batatas.jpg, separa "batatas de "jpg")
-    $nomecompleto = explode(".", $_FILES["ffoto"] ["name"]);
+    // criar array com o nome do ficheiro, separado por ponto (ex.: se chamar batatas.de.jpg, separa "batatas", "de", "jpg")
+    $nomecompleto = explode(".", $_FILES["ffoto"]["name"]);
 
     // dar um nome garantidamente diferente (timestamp UNIX atual) e trazer o último elemento do array (que é a extensão)
-    // gerará um nome como 312321.jpg
+    // gerará um nome como 312321.jpg com a função end pegando o que tá escrito depois do . que é a extensão da img
     $novonome = round(microtime(true)) . "." . end($nomecompleto);
-    move_uploaded_file($_FILES["ffoto"] ["tmp_name"], "imgs/cidades/" . $novonome);
+    move_uploaded_file(
+        $_FILES["ffoto"]["tmp_name"],
+        __DIR__ . "/imgs/imgs/cidades/" . $novonome
+    );
 
     $sql_adFoto = "INSERT INTO fotos (img_f, desc_f, cidade_f) VALUES (?, ?, ?)";
     // VALUES ('$novonome, $desc, $cidade)";
@@ -29,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt  = $conexao->prepare($sql_adFoto);
     $stmt->execute($adFoto);
 
-    if($stmt==TRUE) {
+    if ($stmt == TRUE) {
         // depois de inserido a foto navega para a página inicial
         $_SESSION['alerta'] = 'Imagem inserida com sucesso!';
     } else {
@@ -61,29 +68,30 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <p id="p_titulo_01"> Adicionar Fotografias </p>
         <br>
-            <?php if($_SERVER['REQUEST_METHOD']!='POST'): ?>
-            <form action="" method="POST" enctype="multipart/form-data"> 
+        <?php if ($_SERVER['REQUEST_METHOD'] != 'POST'): ?>
+            <form action="" method="POST" enctype="multipart/form-data">
                 <!--  Os dados enviados por POST nao sao visiveis no browser 
                 action define para onde os dados sao enviados, action="" envia os dados para este mesmo ficheiro-->
                 Fotografia<br>
-                <input type="file" name="ffoto" class="class-inputs" required>
+                <input type="file" name="ffoto" class="class-input" required>
                 <br><br>
                 Cidade<br>
-                <select name="fcidade" class="class-inputs" required> 
-                        <?php foreach($resultado AS $cidade): ?>
-                            <option value="<?=$cidade['id_c']?>"><?=$cidade['nome_c']?></option>
-                        <?php endforeach; ?>
+                <select name="fcidade" class="class-input" required>
+                    <?php foreach ($resultado as $cidade): ?>
+                        <option value="<?= $cidade['id_c'] ?>"><?= $cidade['nome_c'] ?></option>
+                    <?php endforeach; ?>
                 </select>
                 <br><br>
                 Descrição<br>
-                <textarea name="fdesc" class="class-inputs"></textarea>
+                <textarea name="fdesc" class="class-input"></textarea>
                 <br><br>
                 <input type="submit" value="adicionar">
 
             </form>
-            <?php endif;?>
+        <?php endif; ?>
     </main>
-    <?php require_once "includes/footer.php" ?>  
-    <?php require_once "includes/janela_aviso.php" ?>  
+    <?php require_once "includes/footer.php" ?>
+    <?php require_once "includes/janela_aviso.php" ?>
 </body>
+
 </html>
