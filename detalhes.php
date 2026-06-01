@@ -15,7 +15,7 @@ $pais      = $resultado['pais_c'];
 $fundacao  = $resultado['dataf_c'] >= 0 ? $resultado['dataf_c'] : abs($resultado['dataf_c']). " A.C.";
 $descricao = $resultado['desc_c'];
 
-$SQL       = "SELECT img_f FROM fotos WHERE cidade_f = ?";
+$SQL       = "SELECT id_f, img_f FROM fotos WHERE cidade_f = ?";
 $stmt      = $conexao->prepare($SQL);
 $stmt     -> execute([$_GET['cidade']]);
 $fotos     = $stmt->fetchAll();
@@ -43,7 +43,10 @@ $fotos     = $stmt->fetchAll();
                 <br><br>
                 <div class="flex_box">
                     <?php foreach($fotos as $foto): ?>
-                    <img src="imgs/imgs/cidades/<?= $foto['img_f'] ?>" class="miniatura">
+                    <div class="moldura">
+                        <img src="imgs/imgs/cidades/<?= $foto['img_f'] ?>" class="miniatura">
+                        <a href="el_fotos.php?id_foto=<?= $foto['id_f'] ?>" class="eliminar-foto">Eliminar</a>
+                    </div>
                     <?php endforeach ?>
                 </div>
         </div>

@@ -1,6 +1,6 @@
 // conexão para cidades:::::::::
-
 <?php 
+
 $dsn                  = "mysql:host=$servername;dbname=dbname;charset=utf8mb4";
 $opcoes               = [
                             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
