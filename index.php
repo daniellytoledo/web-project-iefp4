@@ -11,6 +11,31 @@ $stmt = $conexao->prepare($SQL);
 $stmt->execute();
 $resultado = $stmt->fetchAll();
 
+// verificar se o usuário existe ao fazer login
+if(isset($_POST['fuser'])) {
+    $sql       = "SELECT * FROM utilizadores WHERE nome_f =?";
+    $stmt      = $conexao->prepare($sql); // prepara os dados conferindo se o que recebeu é o mesmo tipo de dados que está na tabela para ter certeza que não há injeções no SQL 
+    $stmt->execute([$_POST['fuser']]);
+    $resposta = $stmt->fetch();
+
+    // verificar se o array do resultado tem dados, se tem dados é porque o usuário existe na tabela de dados, se não tem, ele volta como count 0, então...
+    if(count($resultado)>0) {
+
+        // verificar se a senha recebida pelo post é SIMILAR a senha do $passEcriptada porque iguais nunca vão ser por conta do timestemp
+        if(password_verify($_POST['fpass'], $resposta['pass_u'])) {
+
+            // para a página continuar verificando o utilizador e suas permissões
+            $_SESSION['utilizador_nome']  = $resposta['nome_u'];
+            $_SESSION['utilizador_nivel'] = $resposta['nivel_u'];
+            $_SESSION['utilizador_id']    = $resposta['id_u'];
+        } else {
+            $_SESSION['alerta'] = "A password está incorreta!";
+        }
+    } else {
+        $_SESSION['alerta'] = "Utilizador não encontrado!";
+    }
+}
+
 // se o array de SESSION tem um elemento alerta
 if(isset($_SESSION['alerta'])){
     // cria variável com o texto do alerta
@@ -23,8 +48,6 @@ if(isset($_SESSION['alerta'])){
     // mantém escondida a janela alerta
     $styleJanelaAlerta = "display:none;";
 }
-
-//pre($resultado);
 
 ?>
 
